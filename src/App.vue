@@ -1,13 +1,53 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="test">
+      <bar-chart :width=500 :option="options" :series="series" :title="title" :graph_id="graph_id"></bar-chart>
+      <line-chart :width=500 :option="options" :series="series" :title="title" :graph_id="graph_id"></line-chart>
+      <heatmap :width=500 :option="options" :series="series" :title="title" :graph_id="graph_id"></heatmap>
     </div>
-    <router-view/>
   </div>
 </template>
 
+<script>
+import BarChart from './components/graphs/BarChart'
+import LineChart from './components/graphs/LineChart'
+import Heatmap from './components/graphs/HeatChart'
+export default {
+  components: {
+    BarChart, LineChart, Heatmap
+  },
+  data: function () {
+    return {
+      options: {
+        chart: {
+          id: 'vuechart-example'
+        },
+        xaxis: {
+          categories: [91, 92, 93, 94, 95, 96, 97, 98]
+        }
+      },
+      series: [{
+        name: 'Metric1',
+        data: [15, 23, 15, 9, 11, 3, 2, 15]
+      },
+      {
+        name: 'Metric2',
+        data: [15, 23, 15, 9, 11, 3, 2, 15]
+      },
+      {
+        name: 'Metric3',
+        data: [15, 23, 15, 9, 11, 3, 2, 15]
+      },
+      {
+        name: 'Metric4',
+        data: [15, 23, 15, 9, 11, 3, 2, 15]
+      }],
+      title: 'sample',
+      graph_id: 'bar'
+    }
+  }
+}
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
